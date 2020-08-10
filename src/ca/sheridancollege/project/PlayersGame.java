@@ -19,6 +19,7 @@ public class PlayersGame extends Player {
 
     private int numPlayer;
     public int i=0,j=0;
+    DeclareWinner dw;
     
     String s;
     
@@ -82,8 +83,11 @@ public class PlayersGame extends Player {
             System.out.println(super.getPlayerID3()+" has "+p3.size()+" Cards in deck");
             System.out.println("-------------------");
             System.out.println(gameStart(p1,p2,p3));
-            //System.out.println(p1.get(1));
-            //System.out.println(p1.get(1).getValue().getValue());
+            System.out.println(super.getPlayerID1()+" has "+p1.size()+" Cards in deck");
+            System.out.println(super.getPlayerID2()+" has "+p2.size()+" Cards in deck");
+            System.out.println(super.getPlayerID3()+" has "+p3.size()+" Cards in deck");
+           
+            dw.declareWinner();
         }
             
         if(numPlayer == 2)
@@ -112,8 +116,8 @@ public class PlayersGame extends Player {
             System.out.println(gameStart(p1,p2));
             System.out.println(super.getPlayerID1()+" has "+p1.size()+" Cards in deck");
             System.out.println(super.getPlayerID2()+" has "+p2.size()+" Cards in deck");
-            //System.out.println(p1.get(1));
-            //System.out.println(p1.get(1).getValue().getValue());
+            
+            dw.declareWinner();
         }
     }
      /**
@@ -151,11 +155,13 @@ public class PlayersGame extends Player {
         {
             s = super.getPlayerID1()+" won the game.";
             p1.addAll(temp);
+            dw = new DeclareWinner(super.getPlayerID1());
         }
         else
         {
             s = super.getPlayerID2()+" won the game.";
             p2.addAll(temp);
+            dw = new DeclareWinner(super.getPlayerID2());
         }
         return s;
     }
@@ -193,12 +199,14 @@ public class PlayersGame extends Player {
                     s = super.getPlayerID2()+ " won the game.";
                     p2.addAll(temp);
                     temp.clear();
+                    dw = new DeclareWinner(super.getPlayerID2());
                 }
                 else if(p2.size()<=5)
                 {
                     s = super.getPlayerID1()+ " won the game.";
                     p1.addAll(temp);
                     temp.clear();
+                    dw = new DeclareWinner(super.getPlayerID1());
                 }
                 else {
                 for(int k=0;k<3;k++)
@@ -278,16 +286,19 @@ public class PlayersGame extends Player {
         {
             s = super.getPlayerID1()+" won the game.";
             p1.addAll(temp1);
+            dw = new DeclareWinner(super.getPlayerID1());
         }
         else if(p1.isEmpty() && !p2.isEmpty() && p3.isEmpty())
         {
             s = super.getPlayerID2()+" won the game.";
             p2.addAll(temp1);
+            dw = new DeclareWinner(super.getPlayerID2());
         }
         else
         {
             s = super.getPlayerID3()+" won the game.";
             p3.addAll(temp1);
+            dw = new DeclareWinner(super.getPlayerID3());
         }
         return s;
        

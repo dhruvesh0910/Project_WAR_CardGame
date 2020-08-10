@@ -37,6 +37,7 @@ public class PlayWarGame {
         int numPlayers = in.nextInt();
        
         String player[] = new String[numPlayers];
+        
         for(int j=0; j<numPlayers; j++)
         {
             System.out.println("Enter Player"+(j+1)+" name : ");
