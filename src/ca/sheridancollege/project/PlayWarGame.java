@@ -35,17 +35,25 @@ public class PlayWarGame {
        
         System.out.print("Enter number of players: ");
         int numPlayers = in.nextInt();
+       
+        String player[] = new String[numPlayers];
+        for(int j=0; j<numPlayers; j++)
+        {
+            System.out.println("Enter Player"+(j+1)+" name : ");
+            player[j] = in.next();
+        }
         
+        if(numPlayers == 2)
+        {
+            PlayersGame pg1 = new PlayersGame(numPlayers,player[0],player[1]);
+            pg1.play();
+        }
         
-        System.out.print("Enter name of player1: ");
-        String player1 = in.next();
-        
-        System.out.print("Enter name of player2: ");
-        String player2 = in.next();
-        
-        PlayersGame pg1 = new PlayersGame(numPlayers,player1,player2);//(numPlayers,player1,player2);
-        pg1.play();
-        
+        if(numPlayers == 3)
+        {
+            PlayersGame pg1 = new PlayersGame(numPlayers,player[0],player[1],player[2]);
+            pg1.play();
+        }
         
     }
 }
