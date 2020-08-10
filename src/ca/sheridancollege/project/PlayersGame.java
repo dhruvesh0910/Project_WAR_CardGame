@@ -23,6 +23,7 @@ public class PlayersGame extends Player {
     String s;
     
     ArrayList<Card> temp = new ArrayList();
+    ArrayList<Card> temp1 = new ArrayList();
     
     ArrayList<Card> p1 = new ArrayList();
     ArrayList<Card> p2 = new ArrayList();
@@ -76,9 +77,9 @@ public class PlayersGame extends Player {
                 t++;
             }
             System.out.println("-------------------");
-            System.out.println("p1-->"+p1.size());
-            System.out.println("p2 -->"+p2.size());
-            System.out.println("p3 -->"+p3.size());
+            System.out.println(super.getPlayerID1()+" has "+p1.size()+" Cards in deck");
+            System.out.println(super.getPlayerID2()+" has "+p2.size()+" Cards in deck");
+            System.out.println(super.getPlayerID3()+" has "+p3.size()+" Cards in deck");
             System.out.println("-------------------");
             System.out.println(gameStart(p1,p2,p3));
             //System.out.println(p1.get(1));
@@ -105,12 +106,12 @@ public class PlayersGame extends Player {
                 t++;
             }
             System.out.println("-------------------");
-            System.out.println("p1-->"+p1.size());
-            System.out.println("p2 -->"+p2.size());
+            System.out.println(super.getPlayerID1()+" has "+p1.size()+" Cards in deck");
+            System.out.println(super.getPlayerID2()+" has "+p2.size()+" Cards in deck");
             System.out.println("-------------------");
             System.out.println(gameStart(p1,p2));
-            System.out.println("p1-->"+p1.size());
-            System.out.println("p2 -->"+p2.size());
+            System.out.println(super.getPlayerID1()+" has "+p1.size()+" Cards in deck");
+            System.out.println(super.getPlayerID2()+" has "+p2.size()+" Cards in deck");
             //System.out.println(p1.get(1));
             //System.out.println(p1.get(1).getValue().getValue());
         }
@@ -123,9 +124,7 @@ public class PlayersGame extends Player {
       */    
     public String gameStart(ArrayList<Card> p1, ArrayList<Card> p2)
     {
-        
-        
-        //while(!p1.isEmpty() && !p2.isEmpty())
+
         while(p1.size()>0 && p2.size()>0)
         {
             Collections.shuffle(p1);
@@ -145,31 +144,30 @@ public class PlayersGame extends Player {
             i++;
             checkForTwoPlayers();
             j=0;
-            System.out.println("p1-->"+p1.size());
-            System.out.println("p2 -->"+p2.size());
+            
             
         }
         if(!p1.isEmpty())
         {
-            s = super.getPlayerID1()+" Player 1 win the game.";
-            //p1.addAll(temp);
+            s = super.getPlayerID1()+" won the game.";
+            p1.addAll(temp);
         }
         else
         {
-            s = super.getPlayerID2()+" Player 2 win the game.";
-            //p2.addAll(temp);
+            s = super.getPlayerID2()+" won the game.";
+            p2.addAll(temp);
         }
         return s;
     }
     public void checkForTwoPlayers()
     {
-        System.out.println("temp -->" +temp.size());
+        System.out.println("There are "+temp.size()+" cards on table for playing.");
         System.out.println("i -->" +i);
         if(temp.get(j-1).getValue().getValue() < temp.get(j-2).getValue().getValue())
             {
                // System.out.println(temp.get(j-1).getValue().getValue());
                 //System.out.println(temp.get(j-2).getValue().getValue());
-                System.out.println("p1 won");
+                System.out.println(super.getPlayerID1()+" won this round.");
                 for(int k=0;k<temp.size();k++) {
                     p1.add(temp.get(k));
                     
@@ -178,7 +176,7 @@ public class PlayersGame extends Player {
             }
             else if(temp.get(j-1).getValue().getValue() > temp.get(j-2).getValue().getValue())
             {
-                System.out.println("p2 won");
+                System.out.println(super.getPlayerID2()+" won this round.");
                 for(int k=0;k<temp.size();k++) {
                     p2.add(temp.get(k));
                     
@@ -187,18 +185,18 @@ public class PlayersGame extends Player {
             }
             else
             {
-                System.out.println("p1-->"+p1.size());
-            System.out.println("p2 -->"+p2.size());
+                System.out.println(super.getPlayerID1()+" has "+p1.size()+" Cards in deck");
+                System.out.println(super.getPlayerID2()+" has "+p2.size()+" Cards in deck");
                 System.out.println("War Begins: ");
                 if(p1.size()<=5)
                 {
-                    s = super.getPlayerID2()+ " Player 2 win the game.";
+                    s = super.getPlayerID2()+ " won the game.";
                     p2.addAll(temp);
                     temp.clear();
                 }
                 else if(p2.size()<=5)
                 {
-                    s = super.getPlayerID1()+ " Player 1 win the game.";
+                    s = super.getPlayerID1()+ " won the game.";
                     p1.addAll(temp);
                     temp.clear();
                 }
@@ -253,36 +251,43 @@ public class PlayersGame extends Player {
             i++;
             checkForThreePlayers();
             j=0;
-            System.out.println("p1-->"+p1.size());
-            System.out.println("p2 -->"+p2.size());
-            System.out.println("p3 -->"+p3.size());
             
             if(p1.size()<1 && p2.size()>1 && p3.size()>1)
             {
+                temp1.addAll(p1);
                 gameStart(p2,p3);
             }
             else if(p1.size()>1 && p2.size()<1 && p3.size()>1)
             {
+                temp1.addAll(p2);
                 gameStart(p1,p3);
             }
             else if(p1.size()>1 && p2.size()>1 && p3.size()<1)
             {
+                temp1.addAll(p3);
                 gameStart(p1,p2);
             }
+            
+            
+                System.out.println(super.getPlayerID1()+" has "+p1.size()+" Cards in deck");
+                System.out.println(super.getPlayerID2()+" has "+p2.size()+" Cards in deck");
+                System.out.println(super.getPlayerID3()+" has "+p3.size()+" Cards in deck");
+           
         }
         if(!p1.isEmpty() && p2.isEmpty() && p3.isEmpty())
         {
-            s = super.getPlayerID1()+" Player 1 win the game.";
-            //p1.addAll(temp);
+            s = super.getPlayerID1()+" won the game.";
+            p1.addAll(temp1);
         }
         else if(p1.isEmpty() && !p2.isEmpty() && p3.isEmpty())
         {
-            s = super.getPlayerID2()+" Player 2 win the game.";
-            //p2.addAll(temp);
+            s = super.getPlayerID2()+" won the game.";
+            p2.addAll(temp1);
         }
         else
         {
-            s = super.getPlayerID3()+" Player 3 win the game.";
+            s = super.getPlayerID3()+" won the game.";
+            p3.addAll(temp1);
         }
         return s;
        
@@ -292,11 +297,11 @@ public class PlayersGame extends Player {
     
     public void checkForThreePlayers()
     {
-        System.out.println("temp -->" +temp.size());
+        System.out.println("There are "+temp.size()+" cards on table for playing.");
         System.out.println("i -->" +i);
         if(temp.get(j-1).getValue().getValue() < temp.get(j-2).getValue().getValue() && temp.get(j-2).getValue().getValue() < temp.get(j-3).getValue().getValue())
             {
-                System.out.println("p1 won");
+                System.out.println(super.getPlayerID1()+" won this round.");
                 for(int k=0;k<temp.size();k++) {
                     p1.add(temp.get(k));
                     
@@ -305,7 +310,7 @@ public class PlayersGame extends Player {
             }
             else if(temp.get(j-1).getValue().getValue() < temp.get(j-2).getValue().getValue() && temp.get(j-2).getValue().getValue() > temp.get(j-3).getValue().getValue())
             {
-                System.out.println("p2 won");
+                System.out.println(super.getPlayerID2()+" won this round.");
                 for(int k=0;k<temp.size();k++) {
                     p2.add(temp.get(k));
                     
@@ -314,7 +319,7 @@ public class PlayersGame extends Player {
             }
             else if(temp.get(j-1).getValue().getValue() > temp.get(j-2).getValue().getValue() && temp.get(j-2).getValue().getValue() > temp.get(j-3).getValue().getValue())
             {
-                System.out.println("p3 won");
+                System.out.println(super.getPlayerID3()+" won this round.");
                 for(int k=0;k<temp.size();k++) {
                     p3.add(temp.get(k));
                     
@@ -323,19 +328,19 @@ public class PlayersGame extends Player {
             }
             else
             {
-                System.out.println("p1-->"+p1.size());
-                System.out.println("p2 -->"+p2.size());
-                System.out.println("p3 -->"+p3.size());
+                System.out.println(super.getPlayerID1()+" has "+p1.size()+" Cards in deck");
+                System.out.println(super.getPlayerID2()+" has "+p2.size()+" Cards in deck");
+                System.out.println(super.getPlayerID3()+" has "+p3.size()+" Cards in deck");
                 System.out.println("War Begins: ");
-                if(p1.size()<=3)
+                if(p1.size()<=5)
                 {
                     gameStart(p2,p3);
                 }
-                else if(p2.size()<=3)
+                else if(p2.size()<=5)
                 {
                     gameStart(p1,p3);
                 }
-                else if(p3.size()<=3)
+                else if(p3.size()<=5)
                 {
                     gameStart(p1,p2);
                 }
