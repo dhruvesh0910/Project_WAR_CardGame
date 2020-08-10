@@ -10,6 +10,7 @@ package ca.sheridancollege.project;
  * enough to be instantiated for any Card game. Students wishing to add to the code 
  * should remember to add themselves as a modifier.
  * @author dancye, 2018
+ * @modified by Dhruvesh Hemantkumar Patel - 991580791
  */
 public abstract class Card 
 {
@@ -21,6 +22,32 @@ public abstract class Card
      */
     
     @Override
-    public abstract String toString();
+    public String toString()
+    {
+        return suit+" -- >"+value;
+    }
+     
+    public enum Suits{Heart, Diamond, Spades, Clubs};
+    
+    private Suits suit;
+    private Value value;
+    
+     
+    public Card(Suits s, Value v)
+    {
+        suit = s;
+        value = v;
+    }
+    
+    public Value getValue() {
+		return this.value;
+	}
+
+	
+    public Suits getSuit() {
+		return this.suit;
+        }
+    
+    
     
 }
