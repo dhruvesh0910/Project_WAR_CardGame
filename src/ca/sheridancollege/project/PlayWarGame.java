@@ -32,18 +32,6 @@ public class PlayWarGame {
                     }
                 }//end outter for
         
-        
-       /* for(i=0;i<GroupOfCards.getCards().size();i++)
-        {
-            System.out.println(GroupOfCards.getCards().get(i).toString());
-        }
-        
-        GroupOfCards.shuffle();
-        
-        for(i=0;i<GroupOfCards.getCards().size();i++)
-        {
-            System.out.println(GroupOfCards.getCards().get(i).toString());
-        }*/
        
         System.out.print("Enter number of players: ");
         int numPlayers = in.nextInt();
