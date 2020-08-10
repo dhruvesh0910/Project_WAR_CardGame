@@ -27,27 +27,29 @@ public abstract class Card
         return suit+" -- >"+value;
     }
      
+    // Enum class for the suits
     public enum Suits{Heart, Diamond, Spades, Clubs};
     
     private Suits suit;
     private Value value;
     
-     
+    // Parameterized Constructor for the class card 
     public Card(Suits s, Value v)
     {
         suit = s;
         value = v;
-    }
+    }//end of method
     
+    // public getters for the value and suits
     public Value getValue() {
 		return this.value;
-	}
+	}//end of method
 
 	
     public Suits getSuit() {
 		return this.suit;
-        }
+        }//end of method
     
     
     
-}
+}//end of class

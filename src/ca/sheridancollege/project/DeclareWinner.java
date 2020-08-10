@@ -6,12 +6,17 @@
 package ca.sheridancollege.project;
 
 /**
- *
+ * This class declare the winner name.
  * @author Dhruvesh Patel
  */
 public class DeclareWinner extends Game{
 
-    String winnerName;
+    String winnerName; //declaration of string variable.
+    
+    /**
+     * parameterize constructor to set the name of the game and name of the winner.
+     * @param name set name of the winner
+     */
     public DeclareWinner(String name)
     {
         super("War Game");
@@ -23,12 +28,15 @@ public class DeclareWinner extends Game{
         
     }
 
+    /**
+     * declare name of the winner
+     */
     @Override
     public void declareWinner() {
         System.out.println("---------------------------------------------------");
         System.out.println(super.getGameName());
         System.out.println(winnerName+" won the Game.");
         System.out.println("---------------------------------------------------");
-    }
+    }// end of declareWinner method.
     
-}
+}// end of class

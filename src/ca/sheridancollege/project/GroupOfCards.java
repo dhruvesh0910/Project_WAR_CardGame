@@ -17,12 +17,11 @@ import java.util.Collections;
 public abstract class GroupOfCards 
 {
    
-    
-    
     private static int size;//the size of the grouping
     //The group of cards, stored in an ArrayList
     protected static ArrayList <Card> cards = new ArrayList(size);
     
+    //Parameterized Constructor
     public GroupOfCards(int givenSize)
     {
         size = givenSize;
@@ -39,6 +38,9 @@ public abstract class GroupOfCards
         return cards;
     }
     
+    /**
+     * Method implementation for shuffling of the cards
+     */
     public static void shuffle()
     {
         Collections.shuffle(cards);
@@ -58,11 +60,13 @@ public abstract class GroupOfCards
         size = givenSize;
     }
 
+    /**
+     * Public getter for the Array list cards
+     *
+     * @return cards
+     */
     public static ArrayList<Card> getCards() {
         return cards;
     }  
-    
-    
-    
-    
+ 
 }//end class

@@ -18,6 +18,10 @@ public abstract class Game
     private final String gameName;//the title of the game
     private ArrayList <Player> players;// the players of the game
     
+    /**
+     * Parameterized Constructor
+     * @param givenName - set the title of the game.
+     */
     public Game(String givenName)
     {
         gameName = givenName;
@@ -25,7 +29,7 @@ public abstract class Game
     }
 
     /**
-     * @return the gameName
+     * @return the gameName - return the name of game.
      */
     public String getGameName() 
     {
@@ -62,4 +66,4 @@ public abstract class Game
 
    
     
-}//end class
+}//end of the class

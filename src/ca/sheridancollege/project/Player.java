@@ -16,7 +16,8 @@ public abstract class Player
     
     /**
      * A constructor that allows you to set the player's unique ID
-     * @param name the unique ID to assign to this player.
+     * @param player1 the unique ID to assign to player1.
+     * @param player2 the unique ID to assign to player2.
      */
     public Player(String player1, String player2)
     {
@@ -24,6 +25,12 @@ public abstract class Player
         playerID2= player2;
     }
     
+    /**
+     * A constructor that allows you to set the player's unique ID
+     * @param player1 the unique ID to assign to player1.
+     * @param player2 the unique ID to assign to player2.
+     * @param player3 the unique ID to assign to player3.
+     */
     public Player(String player1, String player2, String player3)
     {
         playerID1= player1;
@@ -88,4 +95,4 @@ public abstract class Player
      */
     public abstract void play();
     
-}
+}// end of class

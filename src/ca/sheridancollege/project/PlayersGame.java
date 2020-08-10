@@ -17,24 +17,35 @@ import java.util.Collections;
  */
 public class PlayersGame extends Player {
 
+    //declaring all the variables of the class
     private int numPlayer;
     public int i=0,j=0;
+    
+    //declaring object od DeclareWinner class.
     DeclareWinner dw;
     
     String s;
     
-    ArrayList<Card> temp = new ArrayList();
-    ArrayList<Card> temp1 = new ArrayList();
+    ArrayList<Card> temp = new ArrayList(); // Arraylist created to store the cards in the temp during the gameplay
+    ArrayList<Card> temp1 = new ArrayList(); // Arraylist created to store the cards in the temp1 during the gameplay
     
-    ArrayList<Card> p1 = new ArrayList();
-    ArrayList<Card> p2 = new ArrayList();
-    ArrayList<Card> p3 = new ArrayList();
+    ArrayList<Card> p1 = new ArrayList(); // Arraylist created to store the cards of the player 1
+    ArrayList<Card> p2 = new ArrayList(); // Arraylist created to store the cards of the player 2
+    ArrayList<Card> p3 = new ArrayList(); // Arraylist created to store the cards of the player 3
 
+    /**
+     * Parameterized constructor which has numPlayers for number of players
+     * Player 1 and Player 2 inherited from the super class Player for the player IDs
+     * @param numPlayer - store number of player play the game
+     * @param player1 - name of player1
+     * @param player2 - name of player2
+     */
     public PlayersGame(int numPlayer, String player1,String player2) {
         super(player1,player2);
         this.numPlayer = numPlayer;
     }
     
+    // public getters and setters for the number of players
     public PlayersGame(int numPlayer, String player1,String player2, String player3) {
         super(player1,player2,player3);
         this.numPlayer = numPlayer;
@@ -48,7 +59,10 @@ public class PlayersGame extends Player {
         this.numPlayer = numPlayer;
     }
     
-    
+    /**
+     * This is the method which initializes the games checks the number of
+     * players. Shuffle the card between number of players players.
+     */
     @Override
     public void play()
     {
@@ -119,12 +133,18 @@ public class PlayersGame extends Player {
             
             dw.declareWinner();
         }
-    }
+    }// end of play() method
+    
+    
+// Code for two Players    
+    
+    
      /**
-      * code for two players
-      * @param p1
-      * @param p2
-      * @return 
+      * This method starts the game
+      * 
+      * @param p1 - refer to player1's card deck
+      * @param p2 - refer to player2's card deck
+      * @return - number of cards left with the either player
       */    
     public String gameStart(ArrayList<Card> p1, ArrayList<Card> p2)
     {
@@ -133,7 +153,7 @@ public class PlayersGame extends Player {
         {
             Collections.shuffle(p1);
             Collections.shuffle(p2);
-            //System.out.println(p1.get(13));
+            
             i=0;
             j=0;
             temp.add(p1.get(i));
@@ -163,16 +183,21 @@ public class PlayersGame extends Player {
             p2.addAll(temp);
             dw = new DeclareWinner(super.getPlayerID2());
         }
+        
         return s;
-    }
+        
+    }// End of the gameStart() method
+    
+    /**
+     * This is the method to check rules of play and decide the result of each stage of game.
+     */
     public void checkForTwoPlayers()
     {
         System.out.println("There are "+temp.size()+" cards on table for playing.");
-        System.out.println("i -->" +i);
+        
         if(temp.get(j-1).getValue().getValue() < temp.get(j-2).getValue().getValue())
             {
-               // System.out.println(temp.get(j-1).getValue().getValue());
-                //System.out.println(temp.get(j-2).getValue().getValue());
+               
                 System.out.println(super.getPlayerID1()+" won this round.");
                 for(int k=0;k<temp.size();k++) {
                     p1.add(temp.get(k));
@@ -224,15 +249,20 @@ public class PlayersGame extends Player {
                 checkForTwoPlayers();         
                 }
             }
-    }
+    }// End of the checkForTwoPlayer method
     
-    /**
-     * Code for three players
-     * @param p1
-     * @param p2
-     * @param p3
-     * @return 
-     */
+
+// Code for three Players    
+    
+    
+     /**
+      * This method starts the game
+      * 
+      * @param p1 - refer to player1's card deck
+      * @param p2 - refer to player2's card deck
+      * @param p3 - refer to player3's card deck
+      * @return - number of cards left with the either player
+      */    
     public String gameStart(ArrayList<Card> p1, ArrayList<Card> p2, ArrayList<Card> p3)
     {
         while(p1.size()>0 && p2.size()>0 && p3.size()>0)
@@ -240,7 +270,7 @@ public class PlayersGame extends Player {
             Collections.shuffle(p1);
             Collections.shuffle(p2);
             Collections.shuffle(p3);
-            //System.out.println(p1.get(13));
+            
             i=0;
             j=0;
             temp.add(p1.get(i));
@@ -301,44 +331,44 @@ public class PlayersGame extends Player {
             dw = new DeclareWinner(super.getPlayerID3());
         }
         return s;
-       
-           
-       
-    }
+    }// End of the gameStart() method
     
+    /**
+     * This is the method to check rules of play and decide the result of each stage of game.
+     */
     public void checkForThreePlayers()
     {
         System.out.println("There are "+temp.size()+" cards on table for playing.");
         System.out.println("i -->" +i);
         if(temp.get(j-1).getValue().getValue() < temp.get(j-2).getValue().getValue() && temp.get(j-2).getValue().getValue() < temp.get(j-3).getValue().getValue())
-            {
+        {
                 System.out.println(super.getPlayerID1()+" won this round.");
                 for(int k=0;k<temp.size();k++) {
                     p1.add(temp.get(k));
                     
                 }
                 temp.clear();
-            }
-            else if(temp.get(j-1).getValue().getValue() < temp.get(j-2).getValue().getValue() && temp.get(j-2).getValue().getValue() > temp.get(j-3).getValue().getValue())
-            {
+        }
+        else if(temp.get(j-1).getValue().getValue() < temp.get(j-2).getValue().getValue() && temp.get(j-2).getValue().getValue() > temp.get(j-3).getValue().getValue())
+        {
                 System.out.println(super.getPlayerID2()+" won this round.");
                 for(int k=0;k<temp.size();k++) {
                     p2.add(temp.get(k));
                     
                 }
                 temp.clear();
-            }
-            else if(temp.get(j-1).getValue().getValue() > temp.get(j-2).getValue().getValue() && temp.get(j-2).getValue().getValue() > temp.get(j-3).getValue().getValue())
-            {
+        }
+        else if(temp.get(j-1).getValue().getValue() > temp.get(j-2).getValue().getValue() && temp.get(j-2).getValue().getValue() > temp.get(j-3).getValue().getValue())
+        {
                 System.out.println(super.getPlayerID3()+" won this round.");
                 for(int k=0;k<temp.size();k++) {
                     p3.add(temp.get(k));
                     
                 }
                 temp.clear();
-            }
-            else
-            {
+        }
+        else
+        {
                 System.out.println(super.getPlayerID1()+" has "+p1.size()+" Cards in deck");
                 System.out.println(super.getPlayerID2()+" has "+p2.size()+" Cards in deck");
                 System.out.println(super.getPlayerID3()+" has "+p3.size()+" Cards in deck");
@@ -355,25 +385,26 @@ public class PlayersGame extends Player {
                 {
                     gameStart(p1,p2);
                 }
-                else {
-                for(int k=0;k<3;k++)
+                else 
                 {
-                    temp.add(p1.get(k));
-                    p1.remove(k);
-                    j++;
+                    for(int k=0;k<3;k++)
+                    {
+                        temp.add(p1.get(k));
+                        p1.remove(k);
+                        j++;
            
-                    temp.add(p2.get(k));
-                    p2.remove(k);
-                    j++;
+                        temp.add(p2.get(k));
+                        p2.remove(k);
+                        j++;
                     
-                    temp.add(p3.get(k));
-                    p3.remove(k);
-                    j++;
+                        temp.add(p3.get(k));
+                        p3.remove(k);
+                        j++;
                     
-                    i++;
+                        i++;
+                    }
+                    checkForThreePlayers();         
                 }
-                checkForThreePlayers();         
-                }
-            }
-    }
-}
+        }
+    }// End of the checkForTwoPlayer method
+}// End of class

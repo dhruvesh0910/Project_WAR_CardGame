@@ -6,7 +6,7 @@
 package ca.sheridancollege.project;
 
 /**
- *
+ * This the Enumeration class for the value of the cards
  * @author Dhruvesh Patel
  */
 public enum Value {
@@ -36,4 +36,4 @@ public enum Value {
         this.value = value;
     }
     
-}
+}// end of enumration interface

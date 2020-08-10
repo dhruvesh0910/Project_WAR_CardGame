@@ -6,14 +6,15 @@
 package ca.sheridancollege.project;
 
 /**
- *
+ * This is the Deck class which inherits all the data from card class
  * @author Dhruvesh Patel
  */
 public class CardDeck extends Card {
     
+    //Parameterized Constructor
     CardDeck(Card.Suits s, Value v)
     {
         super(s,v);
     }
     
-}
+}//end of class
