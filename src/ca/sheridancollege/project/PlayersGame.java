@@ -86,167 +86,100 @@ public class PlayersGame extends Player {
     public String gameStart()
     {
         
-        Iterator<Card> iterator1 = p1.iterator();
-        Iterator<Card> iterator2 = p2.iterator();
-        int index = 0,i=0;
-        while(iterator1.hasNext() && iterator2.hasNext())
+        
+        //while(!p1.isEmpty() && !p2.isEmpty())
+        while(p1.size()>0 && p2.size()>0)
         {
-            if(index == p1.size())
-            {
-                for(int c=0;c<temp.size();c++)
-                {
-                    p2.add(temp.get(c));
-                }
-            }
-            else if(index == p2.size())
-            {
-                for(int c=0;c<temp.size();c++)
-                {
-                    p1.add(temp.get(c));
-                }
-            }
-        else {
-            //temp.add(iterator1.next());
-            temp.add(p1.get(index));
-            i++;
-            temp.add(p2.get(index));
-            i++;
-            p1.remove(index);
-            p2.remove(index);
-            index++;
+            Collections.shuffle(p1);
+            Collections.shuffle(p2);
+            //System.out.println(p1.get(13));
+            i=0;
+            j=0;
+            temp.add(p1.get(i));
+            j++;
+           
+            temp.add(p2.get(i));
+            j++;
             
-            if(temp.get(i-2).getValue().getValue() > temp.get(i-1).getValue().getValue())
+            p1.remove(i);
+            p2.remove(i);
+            
+            i++;
+            check();
+            j=0;
+            System.out.println("p1-->"+p1.size());
+            System.out.println("p2 -->"+p2.size());
+            
+        }
+        if(!p1.isEmpty())
+        {
+            s = super.getPlayerID1()+" Player 1 win the game.";
+            //p1.addAll(temp);
+        }
+        else
+        {
+            s = super.getPlayerID2()+" Player 2 win the game.";
+            //p2.addAll(temp);
+        }
+        return s;
+    }
+    public void check()
+    {
+        System.out.println("temp -->" +temp.size());
+        System.out.println("i -->" +i);
+        if(temp.get(j-1).getValue().getValue() < temp.get(j-2).getValue().getValue())
             {
-                System.out.println("inside if");
-                p1.add(temp.get(i-2));
-                p1.add(temp.get(i-1));
-                temp.remove(--i);
-                temp.remove(--i);
-                
+               // System.out.println(temp.get(j-1).getValue().getValue());
+                //System.out.println(temp.get(j-2).getValue().getValue());
+                System.out.println("p1 won");
+                for(int k=0;k<temp.size();k++) {
+                    p1.add(temp.get(k));
+                    
+                }
+                temp.clear();
             }
-            else if(temp.get(i-2).getValue().getValue() < temp.get(i-1).getValue().getValue())
+            else if(temp.get(j-1).getValue().getValue() > temp.get(j-2).getValue().getValue())
             {
-                System.out.println("inside else..if");
-                p2.add(temp.get(i-2));
-                p2.add(temp.get(i-1));
-                temp.remove(--i);
-                temp.remove(--i);
+                System.out.println("p2 won");
+                for(int k=0;k<temp.size();k++) {
+                    p2.add(temp.get(k));
+                    
+                }
+                temp.clear();
             }
             else
             {
-                System.out.println("inside else");
-               int j=0;
-                do
+                System.out.println("p1-->"+p1.size());
+            System.out.println("p2 -->"+p2.size());
+                System.out.println("War Begins: ");
+                if(p1.size()<=5)
                 {
-                    if(index == p1.size())
-                    {
-                        for(int c=0;c<temp.size();c++)
-                        {
-                            p2.add(temp.get(c));
-                        }
-                    }
-                    else if(index == p2.size())
-                    {
-                        for(int c=0;c<temp.size();c++)
-                        {
-                            p1.add(temp.get(c));
-                        }
-                    }
-                    else {
-                    System.out.println("inside do..while loop");
-                    temp.add(p1.get(index));
-                    i++;
-                    temp.add(p2.get(index));
-                    i++;
-                
-                    p1.remove(index);
-                    p2.remove(index);
-                    index++;
-                
-                    temp.add(p1.get(index));
-                    i++;
-                    temp.add(p2.get(index));
-                    i++;
-                
-                    p1.remove(index);
-                    p2.remove(index);
-                    index++;
-                    
-                   // Iterator<Card> iteratorTemp = temp.iterator();
-                    
-                    if(temp.get(i-2).getValue().getValue() > temp.get(i-1).getValue().getValue())
-                    {
-                        /*int i=0;
-                        while(iteratorTemp.hasNext())
-                        {
-                            p1.add(temp.get(i));
-                            temp.remove(i);
-                            i++;
-                        }*/
-                       
-                        for(int k=0;k<((j+1)*4)+2;k++)
-                        {
-                            p1.add(temp.get((i-k)-1));
-                            //temp.remove((i-j)-k);
-                            //temp.remove((i-k)-1);
-                        }
-                        
-                        
-                        /*p1.add(temp.get(i-6));
-                        p1.add(temp.get(i-5));
-                        p1.add(temp.get(i-4));
-                        p1.add(temp.get(i-3));
-                        p1.add(temp.get(i-2));
-                        p1.add(temp.get(i-1));*/
-                   }
-                    else if(temp.get(i-2).getValue().getValue() < temp.get(i-1).getValue().getValue())
-                    {
-                        for(int k=0;k<((j+1)*4)+2;k++)
-                        {
-                            p2.add(temp.get((i-k)-1));
-                           //temp.remove(((i-j)-k)-1);
-                           //temp.remove((i-k)-1);
-                        }
-                       
-                        
-                        /*p2.add(temp.get(i-6));
-                        p2.add(temp.get(i-5));
-                        p2.add(temp.get(i-4));
-                        p2.add(temp.get(i-3));
-                        p2.add(temp.get(i-2));
-                        p2.add(temp.get(i-1));*/
-                   }
-                    }
+                    s = super.getPlayerID2()+ " Player 2 win the game.";
+                    p2.addAll(temp);
+                    temp.clear();
+                }
+                else if(p2.size()<=5)
+                {
+                    s = super.getPlayerID1()+ " Player 1 win the game.";
+                    p1.addAll(temp);
+                    temp.clear();
+                }
+                else {
+                for(int k=0;k<3;k++)
+                {
+                    temp.add(p1.get(i));
+                    p1.remove(i);
                     j++;
-                    System.out.println(i);
-                }while(temp.get(i-2).getValue().getValue() == temp.get(i-1).getValue().getValue());
-                
-                for(int k=0;k<((j+1)*4)+2;k++)
-                {
-                    //p2.add(temp.get((i-k)-1));
-                    //temp.remove(((i-j)-k)-1);
-                    temp.remove(k-i);
+           
+                    temp.add(p2.get(i));
+                    p2.remove(i);
+                    j++;
+                    
+                    i++;
+                }
+                check();         
                 }
             }
-            i=0;
-            //iterator1 = p1.iterator();
-            //iterator2 = p2.iterator();
-        }
-        }
-        
-        if(p2.size()==-1)
-        {
-            return "Player 1 Won Game.";
-        }
-        else if(p1.size()==-1)
-        {
-            return "Player 2 Won Game.";
-        }
-        else
-            return "null";
     }
-    
-    
-   
-    
+  
 }
