@@ -14,9 +14,9 @@ import java.util.Scanner;
 public class PlayWarGame {
     public static void main(String args[])
     {
-        System.out.print("Enter number of card in card deck: ");
+        System.out.println("Card in CardDeck for WAR game is 52.");
         Scanner in = new Scanner(System.in);
-        int cardDeckSize = in.nextInt();
+        int cardDeckSize = 52;
         CardDeck card[] = new CardDeck[cardDeckSize];
         int i = 0;
         for(Card.Suits s: Card.Suits.values())
@@ -31,11 +31,16 @@ public class PlayWarGame {
                         i++;
                     }
                 }//end outter for
+        int numPlayers;
+        System.out.print("Enter number of players (2 or 3): ");
+        numPlayers= in.nextInt();
+        while(numPlayers != 2 && numPlayers != 3)
+        {
+            System.out.println("Choose number of players between 2 and 3 !!!!!!!!");
+            System.out.print("Enter number of players (2 or 3): ");
+            numPlayers= in.nextInt();
+        }
         
-       
-        System.out.print("Enter number of players: ");
-        int numPlayers = in.nextInt();
-       
         String player[] = new String[numPlayers];
         
         for(int j=0; j<numPlayers; j++)
