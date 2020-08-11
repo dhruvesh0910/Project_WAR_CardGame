@@ -14,17 +14,20 @@ import java.util.Collections;
  * The group of cards has a maximum size attribute which is flexible for reuse.
  * @author dancye
  */
-public class GroupOfCards 
+public abstract class GroupOfCards 
 {
    
+    private static int size;//the size of the grouping
     //The group of cards, stored in an ArrayList
-    private ArrayList <Card> cards;
-    private int size;//the size of the grouping
+    protected static ArrayList <Card> cards = new ArrayList(size);
     
+    //Parameterized Constructor
     public GroupOfCards(int givenSize)
     {
         size = givenSize;
     }
+   
+    
     
     /**
      * A method that will get the group of cards as an ArrayList
@@ -35,7 +38,10 @@ public class GroupOfCards
         return cards;
     }
     
-    public void shuffle()
+    /**
+     * Method implementation for shuffling of the cards
+     */
+    public static void shuffle()
     {
         Collections.shuffle(cards);
     }
@@ -53,5 +59,14 @@ public class GroupOfCards
     public void setSize(int givenSize) {
         size = givenSize;
     }
-    
+
+    /**
+     * Public getter for the Array list cards
+     *
+     * @return cards
+     */
+    public static ArrayList<Card> getCards() {
+        return cards;
+    }  
+ 
 }//end class

@@ -11,12 +11,17 @@ import java.util.ArrayList;
  * The class that models your game. You should create a more specific
  * child of this class and instantiate the methods given.
  * @author dancye, 2018
+ * @modified by Dhruvesh Hemantkumar Patel - 991580791
  */
 public abstract class Game 
 {
     private final String gameName;//the title of the game
     private ArrayList <Player> players;// the players of the game
     
+    /**
+     * Parameterized Constructor
+     * @param givenName - set the title of the game.
+     */
     public Game(String givenName)
     {
         gameName = givenName;
@@ -24,7 +29,7 @@ public abstract class Game
     }
 
     /**
-     * @return the gameName
+     * @return the gameName - return the name of game.
      */
     public String getGameName() 
     {
@@ -61,4 +66,4 @@ public abstract class Game
 
    
     
-}//end class
+}//end of the class
